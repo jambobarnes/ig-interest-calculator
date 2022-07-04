@@ -10,6 +10,12 @@ The local JSON file comes with some existing calculation values. POST requests t
 
 The application has been deployed and is available [interest-calculator.sharpcircle.co.uk](http://interest-calculator.sharpcircle.co.uk/). The deployed application is **not fully functional** as there is no remote backend service
 
+### Use of Redux
+The use of Redux is intended as a demonstration only. Redux is used to manage the state for the calculator's input values, results and 'last 4' history only.
+
+### Responsive Design
+The application is suitable for use on a range of devices, but this has not been fully tested.
+
 ## Features
 - Frontend SPA allows users to create new calculations, view a state-based short history of their calculations and retrieve all past calculations
 - Mocked backend service complete with example response stubs
@@ -129,6 +135,9 @@ The calculation of the interest is straightforward. An operand `console interest
 
 ### Error Responses
 The mock server has not been configured to provide error responses. Backend errors will be logged to the console by mockserver. Frontend errors have been handled with default states, but no validation or other error handling/user error notification has been implemented for this POC.
+
+### Currency Formatting
+The backend is only responsible for returning integers/floats. Currency formatting is handled on the frontend using a formatter function built upon internationalization features in Node.js. Currency.js or a similar library may also be considered as alternative options.
 
 ### Note on CORS
 When running the application locally, requests to the backend from a browser client will fail if the response is not returned with the correct headers due to browser-enforced CORS restrictions.
