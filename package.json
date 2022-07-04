@@ -31,7 +31,7 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"mockserver -p 8080 -m mocks -D mockserver.enableCORSForAllResponses=true\"",
-    "build": "concurrently \"react-scripts build\" \"mockserver -p 8080 -m mocks -D mockserver.enableCORSForAllResponses=true\"",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
