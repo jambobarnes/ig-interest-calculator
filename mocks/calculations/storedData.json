@@ -1,0 +1,28 @@
+{
+  "calculations": [
+    {
+      "value": 3500000,
+      "interest": 10.5,
+      "interestRate": 0.105,
+      "calculated": 367500
+    },
+    {
+      "value": 3500000,
+      "interest": 10.5,
+      "interestRate": 0.105,
+      "calculated": 367500
+    },
+    {
+      "value": 1000,
+      "interest": 20,
+      "interestRate": 0.2,
+      "calculated": 200
+    },
+    {
+      "value": 1500,
+      "interest": 20,
+      "interestRate": 0.2,
+      "calculated": 300
+    }
+  ]
+}

@@ -12,9 +12,12 @@ module.exports = {
       colors: {
         'ig-blue': '#16254B',
         'ig-light': '#E9FCFC',
-        'ig-green': '#40D4B0'
+        'ig-green': '#40D4B0',
+        'ig-dark': '#1A8D70'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }

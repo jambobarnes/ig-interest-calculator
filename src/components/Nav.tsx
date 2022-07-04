@@ -18,7 +18,7 @@ export function Nav() {
           <div className="ml-10 space-x-4">
             <a
               href="https://incomegroup.co.uk/"
-              className="inline-block bg-ig-green py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-ig-blue font-raleway"
+              className="inline-block bg-ig-green py-2 px-4 border border-transparent rounded-lg text-base font-medium text-white hover:bg-ig-blue font-raleway"
             >
               Find Out More
             </a>
