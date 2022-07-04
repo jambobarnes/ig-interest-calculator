@@ -8,7 +8,7 @@ The app requires a backend service to be deployed in a hosted environment. For a
 
 The local JSON file comes with some existing calculation values. POST requests to the /calculations endpoint will supplement these starter values.
 
-The application has been deployed and is available [interest-calculator.sharpcircle.co.uk](http://interest-calculator.sharpcircle.co.uk/). The deployed application is **not fully functional** as there is no remote backend service
+The application has been deployed and is available at [interest-calculator.sharpcircle.co.uk](http://interest-calculator.sharpcircle.co.uk/). The deployed application is **not fully functional** as there is no remote backend service
 
 ### Use of Redux
 The use of Redux is intended as a demonstration only. Redux is used to manage the state for the calculator's input values, results and 'last 4' history only.
@@ -69,19 +69,18 @@ npm run build
 ```
 
 ## Environment Variables
-### .env
 No environment configuration is required.
 
 ## API Reference
 ### Making Requests
-The backend service is available when running the application locally `console npm run start`. The API does not require any authentication in order to handle requests.
+The backend service is available when running the application locally `npm run start`. The API does not require any authentication in order to handle requests.
 
 
 
 ### GET /calculations
-Returns all calculations persisted in the local data source (JSON file). This includes any calculations added to the data source during local runtime. You can reset the response by amending the contents of `console mocks/calculations/storedData.json`.
+Returns all calculations persisted in the local data source (JSON file). This includes any calculations added to the data source during local runtime. You can reset the response by amending the contents of `mocks/calculations/storedData.json`.
 
-The response is returned as an array of `console calculations`
+The response is returned as an array of `calculations`
 
 **200 OK: Example Response**
 ```console
@@ -106,13 +105,13 @@ The response is returned as an array of `console calculations`
 ```
 
 ### POST /calculations
-Stores and returns a calculation based on the provided request. New requests are added to the local data store (`console mocks/calculations/storedData.json`).
+Stores and returns a calculation based on the provided request. New requests are added to the local data store (`mocks/calculations/storedData.json`).
 
-Requests require two properties to be included on the request body: `console interest` and `console value`. These represent the user provided values to be used in calculating the interest amount. Both values must be greater than 0 (this is currently enforced by the front end application but should be validated on the backend service when in production)
+Requests require two properties to be included on the request body: `interest` and `value`. These represent the user provided values to be used in calculating the interest amount. Both values must be greater than 0 (this is currently enforced by the front end application but should be validated on the backend service when in production)
 
-The backend service generates a random UUID for the request and calculates the `console interest` as a percentage of the `console value` provided during the request.
+The backend service generates a random UUID for the request and calculates the `interest` as a percentage of the `value` provided during the request.
 
-The calculation of the interest is straightforward. An operand `console interestRate` is first calculated (`console interest` / 100) to derive a rate as a decimal, and this is used to multply the `console value`. The calculated interest amount is returned on the response as `console calculated`.
+The calculation of the interest is straightforward. An operand `interestRate` is first calculated (`interest` / 100) to derive a rate as a decimal, and this is used to multply the `value`. The calculated interest amount is returned on the response as `calculated`.
 
 **Example Request**
 ```console
