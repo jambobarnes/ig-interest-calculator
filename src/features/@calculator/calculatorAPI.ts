@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { mockserver } from '../../config';
 import { GetCalculationRes, PostCalculationBody, PostCalculationRes } from '../../lib/types/calculations';
 
 export const calculateInterest = async (values: PostCalculationBody) => {
 
   try {
 
-    const data = await axios.post<PostCalculationRes>('http://localhost:8080/calculations', {
+    const data = await axios.post<PostCalculationRes>(`${mockserver}/calculations`, {
       value: values.value,
       interest: values.interest
     }, {
@@ -13,8 +14,6 @@ export const calculateInterest = async (values: PostCalculationBody) => {
         'content-type': 'text/json'
       }
     })
-
-    console.log(data)
 
     return data
 
@@ -30,13 +29,11 @@ export const getCalculations = async () => {
 
   try {
 
-    const data = await axios.get<GetCalculationRes>('http://localhost:8080/calculations', {
+    const data = await axios.get<GetCalculationRes>(`${mockserver}/calculations`, {
       headers: {
         'content-type': 'text/json'
       }
     })
-
-    console.log(data)
 
     return data
 

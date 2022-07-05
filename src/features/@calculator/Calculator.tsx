@@ -18,8 +18,10 @@ export default function Calculator() {
   const [value, setValue] = useState(0)
   const [interest, setInterest] = useState(0)
   const [banner, setBanner] = useState(false)
+  const [bannerMessage, setBannerMessage] = useState('')
   const [open, setOpen] = useState(false)
-
+  
+  
   const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(parseFloat(e.target.value));
   }
@@ -41,13 +43,22 @@ export default function Calculator() {
         interest
       }
 
-      const calculation = await calculateInterest(values)
+      try {
 
-      dispatch(addCalculations(calculation?.data))
+        const calculation = await calculateInterest(values)
+        dispatch(addCalculations(calculation?.data))
+
+      } catch (e) {
+
+        setBanner(true)
+        setBannerMessage('There was an error processing your calculation. Please try again.')
+
+      }
 
     } else {
 
-      setBanner(true);
+      setBanner(true)
+      setBannerMessage('Please enter both an amount and an interest rate to get your calculation.')
 
     }
 
@@ -131,7 +142,7 @@ export default function Calculator() {
               <div className="mt-4">
                 <h2 className="text-lg text-center font-montserrat font-semibold mb-4">Your Latest Calculations</h2>
                 <div className="">
-                  {history.length ?
+                  {history && history.length ?
                     <CalculatorHistoryFeed history={history} />
                     :
                     <p className="text-lg text-center font-light">Your latest calculations will be shown here when you use the calculator</p>
@@ -151,7 +162,7 @@ export default function Calculator() {
 
       {banner &&
         <div id="banner-error" className="sm:mx-auto my-6 sm:max-w-6xl p-4 border border-red-600 rounded-xl">
-          <p className="text-red-600 text-lg text-center">Please enter both an amount and an interest rate to get your calculation.</p>
+          <p className="text-red-600 text-lg text-center">{bannerMessage}</p>
         </div>
       }
 

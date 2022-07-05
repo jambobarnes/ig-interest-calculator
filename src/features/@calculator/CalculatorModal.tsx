@@ -7,14 +7,25 @@ import { formatter } from '../../lib/formatter'
 export default function CalculatorModal({ open, setOpen }: any) {
 
   const [history, setHistory] = useState([])
+  const [noHistory, setNoHistory] = useState('')
 
   useEffect(() => {
 
     const getHistory = async () => {
 
-      const data: any | void = await getCalculations()
-      console.log(data)
-      setHistory(data.data.calculations)
+      try {
+
+        setNoHistory('There\'s no calculations yet - be the first to calculate yours!')
+
+        const data: any | void = await getCalculations()
+        console.log(data)
+        setHistory(data.data.calculations)
+
+      } catch (e) {
+        
+        setNoHistory('There was an error retrieving the calculations. Please try again.')
+
+      }
 
     }
 
@@ -66,7 +77,7 @@ export default function CalculatorModal({ open, setOpen }: any) {
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-6">
-                  {history.length ?
+                  {history && history.length ?
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                     {history.map((historyItem: any) => (
                       <div
@@ -86,7 +97,7 @@ export default function CalculatorModal({ open, setOpen }: any) {
                       </div>
                     ))}
                   </div>:
-                  <p className="text-lg text-center font-light">No previous results? Be the first to calculate yours!</p>
+                  <p className="text-md text-gray-600 text-center font-light">{noHistory}</p>
                   }
                 </div>
               </Dialog.Panel>
